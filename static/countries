@@ -1,7 +1,4 @@
-from django.shortcuts import render, HttpResponse
-from django.http import HttpResponseNotFound
-import json
-countries=[
+[
     {
         "country": "Aruba",
         "languages": [
@@ -2162,58 +2159,3 @@ countries=[
         ]
     }
 ]
-#with open('countries.json') as f:
-#    countries = json.load(f)
-
-# Create your views here.
-def hello(request):
-    return render(request, 'index.html')
-
-def count_page(request, count):
-    for i in countries:
-        if i['country'] == count:
-            page =f"<h1> {i['country']} </h1><ul>"
-            for j in i['languages']:
-                page+=f"<li>{j.title()}</li>"
-            page+=f"""
-            </ul>
-            <a href='/countries-list'>К списку стран</a>
-            """
-            return HttpResponse(page)
-    return HttpResponseNotFound(f"Такой страны {count} в списке нет")
-
-
-def countries_list(request):
-    context={
-        "countries":countries
-    }
-    return render(request,"countries_list.html", context)
-
-
-def languages(request):
-    page = "<h1>Языки</h1><ol>"
-    res=[]
-    for i in countries:
-        for j in i['languages']:
-            res.append(j)
-    set_res=list(set(res))
-    set_res.sort()
-    for i in set_res:
-        page += f"<li><a href='l/{i}'>{i}</a></li>"
-    page+=f"""
-    </ol>
-    <a href='/'> На главную страницу</a>
-    """
-    return HttpResponse(page)
-
-def lang_count(request, lang):
-    page="<h1> Список стран</h1><ol>"
-    for i in countries:
-        for j in i['languages']:
-            if j == lang:
-                page += f"<li>{i['country']}</li>"
-    page+=f"""
-    </ol>
-    <a href='/'> На главную страницу</a>
-    """
-    return HttpResponse(page)

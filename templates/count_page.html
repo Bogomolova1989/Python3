@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>count page</title>
 </head>
 <body>
-$END$
+<h1>{{i.country}}</h1>
+<ol>
+{%for i in countries%}
+    <li><a href="/s/{{i.country}}">{{i.country}}</a></li>
+{%endfor%}
+</ol>
 </body>
 </html>

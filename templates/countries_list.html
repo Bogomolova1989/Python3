@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>countries list</title>
 </head>
 <body>
 <h1>Список всех стран</h1>
 <ol>
 {%for i in countries%}
-    <li><a href="/s/{{i.страна}}">{{i.страна}}</a></li>
+    <li><a href="/s/{{i.country}}">{{i.country}}</a></li>
 {%endfor%}
 </ol>
 </body>
